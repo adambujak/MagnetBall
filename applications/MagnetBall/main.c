@@ -67,11 +67,16 @@ static void led_process(void)
   static uint32_t last_ticks = 0;
   static uint32_t led_state = 0;
 
+  VL6180_RangeData_t range;  /* Range measurmeent  */
+
   uint32_t time = system_time_get();
 
   if (system_time_cmp_ms(last_ticks, time) < 1000) {
     return;
   }
+
+  VL6180_RangePollMeaRurement(0, VL6180_RangeData_t *range);
+
   last_ticks = time;
   led_state = (led_state + 1) % 2;
   gpio_led_set(led_state);
@@ -86,6 +91,9 @@ int main(void)
   system_time_init();
   log_uart_init();
   vl6180_i2c_init();
+
+  VL6180_WaitDeviceBooted(theVL6180Dev);
+  VL6180_InitData(theVL6180Dev);
 
   LOG_INFO("App started\r\n");
 
