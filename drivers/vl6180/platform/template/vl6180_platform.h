@@ -1,30 +1,30 @@
 /*******************************************************************************
-Copyright © 2019, STMicroelectronics International N.V.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * Neither the name of STMicroelectronics nor the
-      names of its contributors may be used to endorse or promote products
-      derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED.
-IN NO EVENT SHALL STMICROELECTRONICS INTERNATIONAL N.V. BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-********************************************************************************/
+ * Copyright © 2019, STMicroelectronics International N.V.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * Neither the name of STMicroelectronics nor the
+ *    names of its contributors may be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+ * NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED.
+ * IN NO EVENT SHALL STMICROELECTRONICS INTERNATIONAL N.V. BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ ********************************************************************************/
 /*
  * $Date: 2015-07-07 17:33:18 +0200 (Tue, 07 Jul 2015) $
  * $Revision: 2441 $
@@ -51,13 +51,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /** @ingroup api_platform
  * @{*/
 
- /**
-  * @brief For user convenience to place or give any required data attribute
-  * to the built-in single device instance \n
-  * Useful only when Configuration @a #VL6180_SINGLE_DEVICE_DRIVER is active
-  *
-  * @ingroup api_platform
-  */
+/**
+ * @brief For user convenience to place or give any required data attribute
+ * to the built-in single device instance \n
+ * Useful only when Configuration @a #VL6180_SINGLE_DEVICE_DRIVER is active
+ *
+ * @ingroup api_platform
+ */
 #define VL6180_DEV_DATA_ATTR
 
 /**
@@ -82,7 +82,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * TODO: michel to apdate
  * @ingroup api_platform
  */
-#define VL6180_RANGE_STATUS_ERRSTRING 1
+#define VL6180_RANGE_STATUS_ERRSTRING    1
 
 /**
  * @def VL6180_SINGLE_DEVICE_DRIVER
@@ -90,12 +90,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Value __1__ =>  Single device capable.
  * Configure optimized API for single device driver with static data and minimal use of ref pointer. \n
- * 				Limited to single device driver or application in non multi thread/core environment. \n
+ *        Limited to single device driver or application in non multi thread/core environment. \n
  *
  * Value __0__ =>  Multiple device capable. User must review "device" structure and type in vl6180_platform.h files.
  * @ingroup api_platform
  */
-#define VL6180_SINGLE_DEVICE_DRIVER 1
+#define VL6180_SINGLE_DEVICE_DRIVER      1
 
 /**
  * @def VL6180_SAFE_POLLING_ENTER
@@ -112,7 +112,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * To be safe set these option to 1
  * @ingroup api_platform
  */
-#define VL6180_SAFE_POLLING_ENTER  0
+#define VL6180_SAFE_POLLING_ENTER        0
 
 /**
  * @def VL6180_HAVE_MULTI_READ
@@ -121,7 +121,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * When set to 1, multi read operations are done (when necessary) by the API functions (mainly WAF) to access a bunch of registers
  * instead of individual ones (for speed increase). This requires the @a VL6180_RdMulti() function to be implemented.
  */
-#define VL6180_HAVE_MULTI_READ          1
+#define VL6180_HAVE_MULTI_READ           1
 
 
 /**
@@ -132,9 +132,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ranging measurements by reading all results registers in one shot (using multi read operation). All post-processing operations (like WAF)
  * are done by accessing the cached registers instead of doing individual register access.
  * @warning It is mandatory to set #VL6180_HAVE_MULTI_READ to 1 to benefit from this advanced mode
-
+ *
  */
-#define VL6180_CACHED_REG          1
+#define VL6180_CACHED_REG    1
 
 
 /**
@@ -143,7 +143,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Requires porting  @a #LOG_FUNCTION_START, @a #LOG_FUNCTION_END, @a #LOG_FUNCTION_END_FMT
  * @ingroup api_platform
  */
-#define VL6180_LOG_ENABLE  0
+#define VL6180_LOG_ENABLE    0
 
 #include "vl6180_def.h"
 
@@ -166,19 +166,17 @@ void VL6180_PollDelay(VL6180Dev_t dev); /* usualy best implemanted a a real fucn
  *  @brief Default value : does nothing. Macro to be deleted it you implement a real function
  * @ingroup api_platform
  */
-#define VL6180_PollDelay(dev)  (void)0
-
-
+#define VL6180_PollDelay(dev)    (void) 0
 
 
 
 #if VL6180_LOG_ENABLE
 #include <sys/time.h>
 #include <stdio.h>
-extern FILE * log_file;
+extern FILE *log_file;
 
-#define trace_printf fprinf
-#define LOG_GET_TIME() clock()
+#define trace_printf      fprinf
+#define LOG_GET_TIME()    clock()
 
 /**
  * @brief Log function start.
@@ -196,8 +194,8 @@ extern FILE * log_file;
  * @endcode
  * @ingroup api_platform
  */
-#define LOG_FUNCTION_START(fmt, ... ) \
-    fprintf(log_file, "VL61080 beg %s start @%d\t" fmt "\n", __FUNCTION__, LOG_GET_TIME(), ##__VA_ARGS__)
+#define LOG_FUNCTION_START(fmt, ...) \
+  fprintf(log_file, "VL61080 beg %s start @%d\t" fmt "\n", __FUNCTION__, LOG_GET_TIME(), ## __VA_ARGS__)
 
 /**
  * @brief  Logging function end with status.
@@ -208,11 +206,11 @@ extern FILE * log_file;
  * @code
  * #define LOG_FUNCTION_END(status)   printf("end %s @%d %d\n", __func__, LOG_GET_TIME(), (int)status)
  * @endcode
-
+ *
  * @ingroup api_platform
  */
-#define LOG_FUNCTION_END(status)\
-        fprintf(log_file, "VL61080  end %s @%d %d\n", __FUNCTION__, LOG_GET_TIME(), (int)status)
+#define LOG_FUNCTION_END(status) \
+  fprintf(log_file, "VL61080  end %s @%d %d\n", __FUNCTION__, LOG_GET_TIME(), (int) status)
 
 
 /**
@@ -226,11 +224,11 @@ extern FILE * log_file;
  * @code
  * #define LOG_FUNCTION_END_FMT(status, fmt, ... )  printf("End %s @%d %d\t"fmt"\n" , __func__, LOG_GET_TIME(), (int)status,##__VA_ARGS__)
  * @endcode
-
+ *
  * @ingroup api_platform
  */
-#define LOG_FUNCTION_END_FMT(status, fmt, ... )\
-        fprintf(log_file, "End %s @%d %d\t"fmt"\n" , __FUNCTION__, LOG_GET_TIME(), (int)status,##__VA_ARGS__)
+#define LOG_FUNCTION_END_FMT(status, fmt, ...) \
+  fprintf(log_file, "End %s @%d %d\t"fmt "\n", __FUNCTION__, LOG_GET_TIME(), (int) status, ## __VA_ARGS__)
 
 
 /**
@@ -247,16 +245,13 @@ extern FILE * log_file;
  * @endcode
  * @ingroup api_platform
  */
-#define VL6180_ErrLog( fmt, ...)  fprintf(stderr, "VL6180_ErrLog %s" fmt "\n", __func__, ##__VA_ARGS__)
+#define VL6180_ErrLog(fmt, ...)          fprintf(stderr, "VL6180_ErrLog %s" fmt "\n", __func__, ## __VA_ARGS__)
 
 #else /* VL6180_LOG_ENABLE no logging */
-    #define LOG_FUNCTION_START(...) (void)0
-    #define LOG_FUNCTION_END(...) (void)0
-    #define LOG_FUNCTION_END_FMT(...) (void)0
-    #define VL6180_ErrLog(... ) (void)0
+    #define LOG_FUNCTION_START(...)      (void) 0
+    #define LOG_FUNCTION_END(...)        (void) 0
+    #define LOG_FUNCTION_END_FMT(...)    (void) 0
+    #define VL6180_ErrLog(...)           (void) 0
 #endif /* else */
 
 #endif  /* VL6180_PLATFORM */
-
-
-

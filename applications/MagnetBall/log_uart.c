@@ -81,6 +81,7 @@ int log_uart_read(uint8_t *data, uint32_t length)
 {
   DISABLE_IRQ();
   int ret = fifo_pop(&rx_fifo, data, length);
+
   ENABLE_IRQ();
   return ret;
 }
@@ -96,6 +97,7 @@ void LOG_UART_IRQHandler(void)
 {
   DISABLE_IRQ();
   uint8_t data;
+
   if (LL_USART_IsActiveFlag_RXNE(LOG_UART)) {
     data = LL_USART_ReceiveData8(LOG_UART);
     // TODO: make sure this is correct flag to clear

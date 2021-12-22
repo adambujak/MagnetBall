@@ -1,7 +1,7 @@
 #! /bin/bash
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
-FIRMWARE_ROOT=$GIT_ROOT/firmware
+FIRMWARE_ROOT=$GIT_ROOT/
 BUILD_DOCKER_SCRIPT=$FIRMWARE_ROOT/tools/build_docker_image.sh
 
 echoerr()

@@ -75,7 +75,7 @@ static void led_process(void)
     return;
   }
 
-  VL6180_RangePollMeaRurement(0, VL6180_RangeData_t *range);
+  VL6180_RangePollMeaRurement(0, VL6180_RangeData_t * range);
 
   last_ticks = time;
   led_state = (led_state + 1) % 2;

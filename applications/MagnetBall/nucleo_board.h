@@ -35,26 +35,26 @@
 #define SYSTEM_TIME_CLK_EN()            LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2)
 
 /* LOG UART */
-#define LOG_UART                  USART2
-#define LOG_UART_IRQn             USART2_IRQn
-#define LOG_UART_IRQHandler       USART2_IRQHandler
-#define LOG_UART_GPIO_PORT        GPIOA
-#define LOG_UART_TX_PIN           LL_GPIO_PIN_2
-#define LOG_UART_RX_PIN           LL_GPIO_PIN_3
-#define LOG_UART_GPIO_AF          LL_GPIO_AF_4
-#define LOG_UART_BAUDRATE         115200
-#define LOG_UART_CLK_SRC()        LL_RCC_SetUSARTClockSource(LL_RCC_USART2_CLKSOURCE_PCLK1)
-#define LOG_UART_CLK_EN()         LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2)
-#define LOG_UART_GPIO_CLK_EN()    LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA)
+#define LOG_UART                        USART2
+#define LOG_UART_IRQn                   USART2_IRQn
+#define LOG_UART_IRQHandler             USART2_IRQHandler
+#define LOG_UART_GPIO_PORT              GPIOA
+#define LOG_UART_TX_PIN                 LL_GPIO_PIN_2
+#define LOG_UART_RX_PIN                 LL_GPIO_PIN_3
+#define LOG_UART_GPIO_AF                LL_GPIO_AF_4
+#define LOG_UART_BAUDRATE               115200
+#define LOG_UART_CLK_SRC()              LL_RCC_SetUSARTClockSource(LL_RCC_USART2_CLKSOURCE_PCLK1)
+#define LOG_UART_CLK_EN()               LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2)
+#define LOG_UART_GPIO_CLK_EN()          LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA)
 
 /* I2C */
-#define IMU_I2C                   I2C1
-#define IMU_I2C_SCL_PIN           LL_GPIO_PIN_6
-#define IMU_I2C_SDA_PIN           LL_GPIO_PIN_7
-#define IMU_I2C_GPIO_AF           LL_GPIO_AF_1
-#define IMU_I2C_GPIO_PORT         GPIOB
-#define IMU_I2C_CLK_SRC()         LL_RCC_SetI2CClockSource(LL_RCC_I2C1_CLKSOURCE_PCLK1);
-#define IMU_I2C_CLK_EN()          LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOB);
-#define IMU_I2C_GPIO_CLK_EN()     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_I2C1);
+#define IMU_I2C                         I2C1
+#define IMU_I2C_SCL_PIN                 LL_GPIO_PIN_6
+#define IMU_I2C_SDA_PIN                 LL_GPIO_PIN_7
+#define IMU_I2C_GPIO_AF                 LL_GPIO_AF_1
+#define IMU_I2C_GPIO_PORT               GPIOB
+#define IMU_I2C_CLK_SRC()               LL_RCC_SetI2CClockSource(LL_RCC_I2C1_CLKSOURCE_PCLK1);
+#define IMU_I2C_CLK_EN()                LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOB);
+#define IMU_I2C_GPIO_CLK_EN()           LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_I2C1);
 
 #endif // NUCLEO_BOARD_H

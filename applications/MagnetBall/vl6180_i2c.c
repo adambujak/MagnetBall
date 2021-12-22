@@ -3,7 +3,7 @@
 
 static i2c_t i2c_instance;
 
-#define SLAVE_ADDR 0x52
+#define SLAVE_ADDR    0x52
 
 static void hw_init(void)
 {
@@ -11,6 +11,7 @@ static void hw_init(void)
   IMU_I2C_GPIO_CLK_EN();
 
   LL_GPIO_InitTypeDef gpio_config = { 0 };
+
   gpio_config.Pin = IMU_I2C_SCL_PIN | IMU_I2C_SDA_PIN;
   gpio_config.Mode = LL_GPIO_MODE_ALTERNATE;
   gpio_config.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
@@ -20,6 +21,7 @@ static void hw_init(void)
   LL_GPIO_Init(IMU_I2C_GPIO_PORT, &gpio_config);
 
   LL_I2C_InitTypeDef i2c_config = { 0 };
+
   i2c_config.PeripheralMode = LL_I2C_MODE_I2C;
   i2c_config.Timing = 0x00300F38;
   i2c_config.AnalogFilter = LL_I2C_ANALOGFILTER_ENABLE;
@@ -33,12 +35,12 @@ static void hw_init(void)
 
 static int VL6180_I2CWrite(uint16_t index, uint8_t *data, uint8_t length)
 {
-  return !(i2c_write(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t)length));
+  return !(i2c_write(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t) length));
 }
 
 static int VL6180_I2CRead(uint16_t index, uint8_t *data, uint8_t length)
 {
-  return !(i2c_read(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t)length));
+  return !(i2c_read(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t) length));
 }
 
 int vl6180_i2c_init(void)
@@ -47,89 +49,97 @@ int vl6180_i2c_init(void)
   return 0;
 }
 
-int VL6180_WrByte(VL6180Dev_t dev, uint16_t index, uint8_t data){
-    return VL6180_I2CWrite(index, &data, 1);
+int VL6180_WrByte(VL6180Dev_t dev, uint16_t index, uint8_t data)
+{
+  return VL6180_I2CWrite(index, &data, 1);
 }
 
-int VL6180_WrWord(VL6180Dev_t dev, uint16_t index, uint16_t data){
-    uint8_t buffer[2];
+int VL6180_WrWord(VL6180Dev_t dev, uint16_t index, uint16_t data)
+{
+  uint8_t buffer[2];
 
-    buffer[0] = data >>8;
-    buffer[1] = data&0xFF;
+  buffer[0] = data >> 8;
+  buffer[1] = data & 0xFF;
 
-    return VL6180_I2CWrite(index, buffer, 2);
+  return VL6180_I2CWrite(index, buffer, 2);
 }
 
-int VL6180_WrDWord(VL6180Dev_t dev, uint16_t index, uint32_t data){
-    uint8_t buffer[4];
+int VL6180_WrDWord(VL6180Dev_t dev, uint16_t index, uint32_t data)
+{
+  uint8_t buffer[4];
 
-    buffer[1]=data>>24;
-    buffer[2]=(data>>16)&0xFF;
-    buffer[3]=(data>>8)&0xFF;;
-    buffer[4]=data&0xFF;
+  buffer[1] = data >> 24;
+  buffer[2] = (data >> 16) & 0xFF;
+  buffer[3] = (data >> 8) & 0xFF;;
+  buffer[4] = data & 0xFF;
 
-    return VL6180_I2CWrite(index, buffer, 6);
+  return VL6180_I2CWrite(index, buffer, 6);
 }
 
-int VL6180_UpdateByte(VL6180Dev_t dev, uint16_t index, uint8_t AndData, uint8_t OrData){
+int VL6180_UpdateByte(VL6180Dev_t dev, uint16_t index, uint8_t AndData, uint8_t OrData)
+{
+  int status = 0;
+  uint8_t buffer;
 
-    int status = 0;
-    uint8_t buffer;
+  status = VL6180_I2CRead(index, &buffer, 1);
 
-    status=VL6180_I2CRead(index, &buffer, 1);
+  if (!status) {
+    buffer = (buffer & AndData) | OrData;
 
-    if( !status ){
-        buffer = (buffer & AndData) | OrData;
+    status = VL6180_I2CWrite(index, &buffer, 1);
+  }
 
-        status = VL6180_I2CWrite(index, &buffer, 1);
-    }
-
-    return status;
+  return status;
 }
 
 int VL6180_RdByte(VL6180Dev_t dev, uint16_t index, uint8_t *data)
 {
-    int  status;
-    uint8_t buffer;
+  int status;
+  uint8_t buffer;
 
-    status = VL6180_I2CRead(index, &buffer, 1);
+  status = VL6180_I2CRead(index, &buffer, 1);
 
-    if( !status ){
-        *data = buffer;
-    }
+  if (!status) {
+    *data = buffer;
+  }
 
-    return status;
+  return status;
 }
 
-int VL6180_RdWord(VL6180Dev_t dev, uint16_t index, uint16_t *data){
-    int  status;
-    uint8_t buffer[2];
+int VL6180_RdWord(VL6180Dev_t dev, uint16_t index, uint16_t *data)
+{
+  int status;
+  uint8_t buffer[2];
 
-    status = VL6180_I2CRead(index, buffer, 2);
+  status = VL6180_I2CRead(index, buffer, 2);
 
-    if( !status ){
-        *data= ((uint16_t)buffer[0]<<8) | (uint16_t)buffer[1];
-    }
+  if (!status) {
+    *data = ((uint16_t) buffer[0] << 8) | (uint16_t) buffer[1];
+  }
 
-    return status;
+  return status;
 }
 
-int  VL6180_RdDWord(VL6180Dev_t dev, uint16_t index, uint32_t *data){
-    int status;
-    uint8_t buffer[4];
+int  VL6180_RdDWord(VL6180Dev_t dev, uint16_t index, uint32_t *data)
+{
+  int status;
+  uint8_t buffer[4];
 
-    status = VL6180_I2CRead(index, buffer, 4);
+  status = VL6180_I2CRead(index, buffer, 4);
 
-    if( !status ){
-        *data=((uint32_t)buffer[0]<<24)|((uint32_t)buffer[1]<<16)|((uint32_t)buffer[2]<<8)|((uint32_t)buffer[3]);
-    }
+  if (!status) {
+    *data =
+      ((uint32_t) buffer[0] <<
+    24) | ((uint32_t) buffer[1] << 16) | ((uint32_t) buffer[2] << 8) | ((uint32_t) buffer[3]);
+  }
 
-    return status;
+  return status;
 }
 
+int  VL6180_RdMulti(VL6180Dev_t dev, uint16_t index, uint8_t *data, int nData)
+{
+  int status;
 
-int  VL6180_RdMulti(VL6180Dev_t dev, uint16_t index, uint8_t *data, int nData){
-    int status;
-    status = VL6180_I2CRead(index, data, nData);
-    return status;
+  status = VL6180_I2CRead(index, data, nData);
+  return status;
 }
