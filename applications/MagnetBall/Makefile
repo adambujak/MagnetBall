@@ -11,6 +11,7 @@ SDK_ROOT = $(FIRMWARE_ROOT)/dependencies/STM32CubeL0
 HAL_ROOT = $(SDK_ROOT)/Drivers/STM32L0xx_HAL_Driver
 
 LIB_ROOT = $(FIRMWARE_ROOT)/libraries
+DRV_ROOT = $(FIRMWARE_ROOT)/drivers
 PROJ_ROOT = $(FIRMWARE_ROOT)/applications/MagnetBall
 
 HAL_SOURCES = \
@@ -27,6 +28,9 @@ LIB_SOURCES = \
 	$(LIB_ROOT)/fast_fifo/fifo.c \
 	$(LIB_ROOT)/system_time/system_time.c \
 
+DRV_SOURCES = \
+	$(DRV_ROOT)/vl6180/core/src/vl6180_api.c \
+
 C_SOURCES = \
 	main.c \
 	gpio.c \
@@ -34,14 +38,19 @@ C_SOURCES = \
 	log_uart.c \
 	logger.c \
 	system_stm32l0xx.c \
-	$(LIB_SOURCES) \
+	vl6180_i2c.c \
+	$(DRV_SOURCES) \
 	$(HAL_SOURCES) \
+	$(LIB_SOURCES) \
 
 C_INCLUDES = \
 	-I$(SDK_ROOT)/Drivers/CMSIS/Device/ST/STM32L0xx/Include \
 	-I$(SDK_ROOT)/Drivers/CMSIS/Include \
 	-I$(HAL_ROOT)/Inc \
 	-I$(PROJ_ROOT) \
+	-I$(DRV_ROOT)/vl6180/config \
+	-I$(DRV_ROOT)/vl6180/core/inc \
+	-I$(DRV_ROOT)/vl6180/platform/template \
 	-I$(LIB_ROOT)/system_time \
 	-I$(LIB_ROOT)/fast_fifo \
 

@@ -4,6 +4,7 @@
 #include "log_uart.h"
 #include "logger.h"
 #include "system_time.h"
+#include "vl6180_i2c.h"
 
 void delay_us(uint32_t us)
 {
@@ -84,6 +85,7 @@ int main(void)
   // init early
   system_time_init();
   log_uart_init();
+  vl6180_i2c_init();
 
   LOG_INFO("App started\r\n");
 

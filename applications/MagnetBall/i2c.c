@@ -20,7 +20,7 @@ static void read_byte(I2C_TypeDef *handle, uint8_t *rx_data)
   }
 }
 
-int i2c_write(i2c_t *instance, uint8_t slave_addr, uint8_t reg_addr, const uint8_t *data, uint16_t length)
+int i2c_write(i2c_t *instance, uint8_t slave_addr, uint16_t index, const uint8_t *data, uint16_t length)
 {
   I2C_TypeDef *handle = (I2C_TypeDef *) instance->handle;
 
@@ -31,7 +31,13 @@ int i2c_write(i2c_t *instance, uint8_t slave_addr, uint8_t reg_addr, const uint8
                         LL_I2C_MODE_AUTOEND,
                         LL_I2C_GENERATE_START_WRITE);
 
-  write_byte(handle, &reg_addr);
+  uint8_t addr_buf;
+
+  addr_buf = index >> 8;
+  write_byte(handle, &addr_buf);
+
+  addr_buf = index & 0xFF;
+  write_byte(handle, &addr_buf);
 
   for (uint32_t i = 0; i < length; i++) {
     write_byte(handle, &data[i]);
@@ -43,11 +49,11 @@ int i2c_write(i2c_t *instance, uint8_t slave_addr, uint8_t reg_addr, const uint8
   return 0;
 }
 
-int i2c_read(i2c_t *instance, uint8_t slave_addr, uint8_t reg_addr, uint8_t *data, uint16_t length)
+int i2c_read(i2c_t *instance, uint8_t slave_addr, uint16_t index, uint8_t *data, uint16_t length)
 {
   I2C_TypeDef *handle = (I2C_TypeDef *) instance->handle;
 
-  i2c_write(instance, slave_addr, reg_addr, NULL, 0);
+  i2c_write(instance, slave_addr, index, NULL, 0);
 
   LL_I2C_HandleTransfer(handle,
                         slave_addr,
