@@ -10,7 +10,7 @@ clean:
 
 nucleo:
 	@echo "Compiling MagnetBall for nucleo..."
-	@./tools/compile.sh NUCLEO
+	@make -C $(APPLICATION_ROOT)
 
 test:
 	@echo "Running tests..."
