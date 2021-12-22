@@ -1,0 +1,17 @@
+_build/system_stm32l0xx.o: system_stm32l0xx.c \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l053xx.h \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/core_cm0plus.h \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/cmsis_version.h \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/cmsis_gcc.h \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/mpu_armv7.h \
+ ../../dependencies/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/system_stm32l0xx.h
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h:
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l053xx.h:
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/core_cm0plus.h:
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/cmsis_version.h:
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/cmsis_compiler.h:
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/cmsis_gcc.h:
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Include/mpu_armv7.h:
+../../dependencies/STM32CubeL0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/system_stm32l0xx.h:
