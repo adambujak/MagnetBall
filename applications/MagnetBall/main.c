@@ -96,6 +96,9 @@ int main(void)
   vl6180_i2c_init();
 
 //  VL6180_WaitDeviceBooted(0);
+// ^^ this hangs idk why
+// just delay for 3s
+  delay_ms(3000);
   VL6180_InitData(0);
 
   LOG_INFO("App started\r\n");
