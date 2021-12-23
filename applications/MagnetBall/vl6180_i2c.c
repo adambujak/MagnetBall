@@ -35,12 +35,12 @@ static void hw_init(void)
 
 static int VL6180_I2CWrite(uint16_t index, uint8_t *data, uint8_t length)
 {
-  return !(i2c_write(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t) length));
+  return i2c_write(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t) length);
 }
 
 static int VL6180_I2CRead(uint16_t index, uint8_t *data, uint8_t length)
 {
-  return !(i2c_read(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t) length));
+  return i2c_read(&i2c_instance, SLAVE_ADDR, index, data, (uint16_t) length);
 }
 
 int vl6180_i2c_init(void)
@@ -68,12 +68,12 @@ int VL6180_WrDWord(VL6180Dev_t dev, uint16_t index, uint32_t data)
 {
   uint8_t buffer[4];
 
-  buffer[1] = data >> 24;
-  buffer[2] = (data >> 16) & 0xFF;
-  buffer[3] = (data >> 8) & 0xFF;;
-  buffer[4] = data & 0xFF;
+  buffer[0] = data >> 24;
+  buffer[1] = (data >> 16) & 0xFF;
+  buffer[2] = (data >> 8) & 0xFF;;
+  buffer[3] = data & 0xFF;
 
-  return VL6180_I2CWrite(index, buffer, 6);
+  return VL6180_I2CWrite(index, buffer, 4);
 }
 
 int VL6180_UpdateByte(VL6180Dev_t dev, uint16_t index, uint8_t AndData, uint8_t OrData)

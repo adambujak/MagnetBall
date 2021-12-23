@@ -5,6 +5,7 @@
 #include "logger.h"
 #include "system_time.h"
 #include "vl6180_i2c.h"
+#include "vl6180_api.h"
 
 void delay_us(uint32_t us)
 {
@@ -75,7 +76,9 @@ static void led_process(void)
     return;
   }
 
-  VL6180_RangePollMeaRurement(0, VL6180_RangeData_t * range);
+  VL6180_Prepare(0);
+  VL6180_RangePollMeasurement(0, &range);
+  LOG_INFO("measured: %ld\r\n", range.range_mm);
 
   last_ticks = time;
   led_state = (led_state + 1) % 2;
@@ -92,8 +95,8 @@ int main(void)
   log_uart_init();
   vl6180_i2c_init();
 
-  VL6180_WaitDeviceBooted(theVL6180Dev);
-  VL6180_InitData(theVL6180Dev);
+//  VL6180_WaitDeviceBooted(0);
+  VL6180_InitData(0);
 
   LOG_INFO("App started\r\n");
 

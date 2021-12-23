@@ -27,7 +27,7 @@ int i2c_write(i2c_t *instance, uint8_t slave_addr, uint16_t index, const uint8_t
   LL_I2C_HandleTransfer(handle,
                         slave_addr,
                         LL_I2C_ADDRSLAVE_7BIT,
-                        length + 1,
+                        length + 2,
                         LL_I2C_MODE_AUTOEND,
                         LL_I2C_GENERATE_START_WRITE);
 

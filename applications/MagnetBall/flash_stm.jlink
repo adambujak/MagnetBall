@@ -2,6 +2,6 @@ si 1
 speed 4000
 r
 h
-loadbin _build/SignBuddy.hex,0x08000000
+loadbin _build/MagnetBall.hex,0x08000000
 r
 q

@@ -112,7 +112,7 @@
  * To be safe set these option to 1
  * @ingroup api_platform
  */
-#define VL6180_SAFE_POLLING_ENTER        0
+#define VL6180_SAFE_POLLING_ENTER        1
 
 /**
  * @def VL6180_HAVE_MULTI_READ
