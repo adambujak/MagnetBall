@@ -112,7 +112,7 @@
 struct MyVL6180Dev_t {
   struct VL6180DevData_t Data;         /*!< embed ST VL6180 Dev  data as "Data"*/
 /* #error ADD HERE any extra device data         */
-  //pthread_mutex_t i2c_lock;
+//pthread_mutex_t i2c_lock;
 
   int                    power_en_gpio; /*!< power enable gpio pin */
   int                    intr_gpio;     /*!< interrupt 1  gpio pin */

@@ -130,7 +130,7 @@ int  VL6180_RdDWord(VL6180Dev_t dev, uint16_t index, uint32_t *data)
   if (!status) {
     *data =
       ((uint32_t) buffer[0] <<
-    24) | ((uint32_t) buffer[1] << 16) | ((uint32_t) buffer[2] << 8) | ((uint32_t) buffer[3]);
+        24) | ((uint32_t) buffer[1] << 16) | ((uint32_t) buffer[2] << 8) | ((uint32_t) buffer[3]);
   }
 
   return status;
